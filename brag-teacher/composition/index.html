@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:'Orbitron';font-weight:700;src:url(assets/fonts/orbitron-latin-700-normal.woff2)}
+@font-face{font-family:'Orbitron';font-weight:900;src:url(assets/fonts/orbitron-latin-900-normal.woff2)}
+@font-face{font-family:'Rajdhani';font-weight:500;src:url(assets/fonts/rajdhani-latin-500-normal.woff2)}
+@font-face{font-family:'Rajdhani';font-weight:700;src:url(assets/fonts/rajdhani-latin-700-normal.woff2)}
+@font-face{font-family:'Share Tech Mono';font-weight:400;src:url(assets/fonts/share-tech-mono-latin-400-normal.woff2)}
+  :root{--bg:#080c10;--bg3:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;
+    --cyan:#00d4ff;--green:#3fb950;--yellow:#d29922;--orange:#f0883e;--red:#f85149;--purple:#bc8cff;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);width:1920px;height:1080px;overflow:hidden}
+  #root{position:relative;width:1920px;height:1080px;background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow:hidden}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.05) 1px,transparent 1px);background-size:60px 60px}
+  .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+  .orb{font-family:'Orbitron',monospace;font-weight:900}
+  .mono{font-family:'Share Tech Mono',monospace}
+  .kicker{font-family:'Orbitron',monospace;font-weight:700;font-size:32px;letter-spacing:6px;color:var(--cyan)}
+  h2{font-family:'Orbitron',monospace;font-weight:900;font-size:64px;margin:18px 0 50px;letter-spacing:2px}
+  .logo{font-size:140px;letter-spacing:10px;color:var(--cyan)}
+  .sub{font-size:48px;color:var(--text);margin-top:20px}
+  .meta{font-family:'Share Tech Mono',monospace;font-size:34px;color:var(--muted);margin-top:40px}
+  /* pipeline */
+  #arch{position:absolute;left:80px;top:20px;width:1760px}
+  .hl{position:absolute;border:6px solid #fff;border-radius:14px;box-shadow:0 0 40px rgba(255,255,255,.5);opacity:0}
+  .cap{position:absolute;left:0;right:0;bottom:24px;text-align:center}
+  .cap span{display:inline-block;background:rgba(8,12,16,.92);border:2px solid var(--cyan);border-radius:12px;padding:14px 30px;font-family:'Share Tech Mono',monospace;font-size:38px;color:var(--text);opacity:0;position:absolute;left:50%;transform:translateX(-50%);bottom:0;white-space:nowrap}
+  /* tables */
+  .modes{display:flex;gap:36px}
+  .mode{width:470px;padding:40px;border-radius:18px;background:var(--bg3);border:2px solid var(--border);opacity:0}
+  .mode h3{font-family:'Orbitron',monospace;font-size:48px;font-weight:900}
+  .mode .row{display:flex;justify-content:space-between;font-family:'Share Tech Mono',monospace;font-size:36px;margin-top:22px;color:var(--muted)}
+  .mode .row b{color:var(--text);font-weight:400}
+  .bars{width:1300px}
+  .bar{display:flex;align-items:center;margin:16px 0;opacity:0}
+  .bar .n{width:330px;font-size:40px;font-weight:700}
+  .bar .t{height:46px;border-radius:8px}
+  .bar .p{font-family:'Share Tech Mono',monospace;font-size:36px;margin-left:20px;color:var(--muted)}
+  .tiers{display:flex;gap:18px;margin-top:40px;opacity:0}
+  .tiers div{font-family:'Orbitron',monospace;font-weight:700;font-size:30px;padding:14px 26px;border-radius:10px;border:2px solid}
+  .trig{display:flex;gap:40px}
+  .tc{width:720px;padding:40px;border-radius:18px;background:var(--bg3);border:2px solid var(--red);opacity:0}
+  .tc h3{font-family:'Orbitron',monospace;font-size:38px;color:var(--red)}
+  .tc p{font-size:44px;margin-top:16px}
+  .or{font-family:'Orbitron',monospace;font-size:40px;color:var(--muted);align-self:center}
+  .acts{display:flex;gap:30px;margin-top:50px}
+  .act{padding:26px 40px;border-radius:14px;border:2px solid var(--border);background:var(--bg3);font-size:40px;font-weight:700;opacity:0}
+  .act small{display:block;font-family:'Share Tech Mono',monospace;font-size:30px;color:var(--muted);font-weight:400;margin-top:6px}
+  #dash{position:absolute;left:110px;top:110px;width:900px;border:2px solid var(--border);border-radius:14px;overflow:hidden}
+  #dash img{display:block;width:100%}
+  .side{position:absolute;left:1090px;top:220px;width:720px}
+  .side .it{margin-bottom:46px;opacity:0}
+  .side h3{font-family:'Orbitron',monospace;font-size:40px;color:var(--cyan)}
+  .side p{font-size:38px;color:var(--text);margin-top:8px}
+  .side code{font-family:'Share Tech Mono',monospace;color:var(--muted);font-size:32px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="root" data-width="1920" data-height="1080" data-duration="61.2">
+  <div class="grid"></div>
+
+  <div class="scene clip" id="t0" data-start="0" data-duration="5.8" style="opacity:1">
+    <div class="kicker">DRIVER SAFETY SYSTEM v5</div>
+    <div class="logo orb" id="logo" style="margin-top:20px">DRIVEGUARD</div>
+    <div class="sub" id="sub">Real-time AI-powered driver monitoring</div>
+    <div class="meta" id="meta">Python · OpenCV · MediaPipe · YOLOv8 · Flask</div>
+  </div>
+
+  <div class="scene clip" id="t1" data-start="5.8" data-duration="17.5" style="display:block">
+    <img id="arch" src="assets/img/architecture_pipeline.png">
+    <div class="hl" id="hl"></div>
+    <div class="cap">
+      <span id="c1">Webcam frame → OpenCV VideoCapture</span>
+      <span id="c2">Gamma correction &amp; LUT for low light</span>
+      <span id="c3">MediaPipe FaceMesh · 478 3D landmarks</span>
+      <span id="c4">EAR (eyes) · MAR (mouth) · solvePnP head pose</span>
+      <span id="c5">YOLOv8 nano · phone at conf ≥ 70%</span>
+    </div>
+  </div>
+
+  <div class="scene clip" id="t2" data-start="23.3" data-duration="7.2">
+    <div class="kicker">ADAPTIVE THRESHOLDS · EVERY 15 FRAMES</div>
+    <h2>Night / Low-light Mode</h2>
+    <div class="modes">
+      <div class="mode"><h3 style="color:var(--yellow)">DAY</h3><div class="row">Brightness<b>&gt; 100</b></div><div class="row">EAR<b>0.25</b></div><div class="row">MAR<b>0.65</b></div></div>
+      <div class="mode"><h3 style="color:var(--orange)">DUSK</h3><div class="row">Brightness<b>60–100</b></div><div class="row">EAR<b>0.22</b></div><div class="row">MAR<b>0.60</b></div></div>
+      <div class="mode"><h3 style="color:var(--purple)">NIGHT</h3><div class="row">Brightness<b>&lt; 60</b></div><div class="row">EAR<b>0.20</b></div><div class="row">MAR<b>0.55</b></div></div>
+    </div>
+  </div>
+
+  <div class="scene clip" id="t3" data-start="30.5" data-duration="6.5">
+    <div class="kicker">detectors/fatigue_score.py</div>
+    <h2>Fatigue Score 0–100</h2>
+    <div class="bars">
+      <div class="bar"><div class="n">Low EAR</div><div class="t" style="width:600px;background:var(--cyan)"></div><div class="p">0–30</div></div>
+      <div class="bar"><div class="n">Drowsy</div><div class="t" style="width:500px;background:var(--red)"></div><div class="p">0–25</div></div>
+      <div class="bar"><div class="n">Yawning</div><div class="t" style="width:400px;background:var(--yellow)"></div><div class="p">0–20</div></div>
+      <div class="bar"><div class="n">Head off-road</div><div class="t" style="width:300px;background:var(--orange)"></div><div class="p">0–15</div></div>
+      <div class="bar"><div class="n">Phone</div><div class="t" style="width:200px;background:var(--purple)"></div><div class="p">0–10</div></div>
+    </div>
+    <div class="tiers" id="tiers">
+      <div style="color:var(--green);border-color:var(--green)">LOW &lt;25</div>
+      <div style="color:var(--yellow);border-color:var(--yellow)">MODERATE &lt;50</div>
+      <div style="color:var(--orange);border-color:var(--orange)">HIGH &lt;75</div>
+      <div style="color:var(--red);border-color:var(--red)">CRITICAL 75+</div>
+    </div>
+  </div>
+
+  <div class="scene clip" id="t4" data-start="37.0" data-duration="14.8">
+    <div class="kicker" style="color:var(--red)">safety/critical_state_monitor.py</div>
+    <h2>"STOP VEHICLE NOW!"</h2>
+    <div class="trig">
+      <div class="tc" id="ta"><h3>CONDITION A</h3><p>Drowsy + head tilt, sustained <b>20 s</b></p></div>
+      <div class="or" id="or">OR</div>
+      <div class="tc" id="tb"><h3>CONDITION B</h3><p>Fatigue score 75+ for <b>10 s</b></p></div>
+    </div>
+    <div class="acts">
+      <div class="act">Rest places<small>OpenStreetMap · Overpass, 5 km</small></div>
+      <div class="act">Gmail<small>SMTP + Maps link</small></div>
+      <div class="act">Telegram<small>Bot API message</small></div>
+    </div>
+  </div>
+
+  <div class="scene clip" id="t5" data-start="51.8" data-duration="6.8" style="display:block">
+    <div id="dash"><img src="assets/img/dashboard.png"></div>
+    <div class="side">
+      <div class="it"><h3>FLASK + SSE</h3><p>Live dashboard at 127.0.0.1:5000</p></div>
+      <div class="it"><h3>SESSION REPORTS</h3><p>Per-frame + summary CSV</p><code>reports/sessions/*_frames.csv</code></div>
+      <div class="it"><h3>HISTORY</h3><p>Past sessions with 7 graph types</p></div>
+    </div>
+  </div>
+
+  <div class="scene clip" id="t6" data-start="58.6" data-duration="2.6">
+    <div class="logo orb">DRIVEGUARD</div>
+    <div class="sub">Thank you.</div>
+  </div>
+
+  <audio id="mus" data-start="0" data-duration="60" data-volume="0.12" data-fade-in="0.8" data-fade-out="2" src="assets/music/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3"></audio>
+  <audio id="v0" data-start="0.3" src="assets/vo/s0.wav"></audio>
+  <audio id="v1" data-start="6.1" src="assets/vo/s1.wav"></audio>
+  <audio id="v2" data-start="23.6" src="assets/vo/s2.wav"></audio>
+  <audio id="v3" data-start="30.8" src="assets/vo/s3.wav"></audio>
+  <audio id="v4" data-start="37.3" src="assets/vo/s4.wav"></audio>
+  <audio id="v5" data-start="52.1" src="assets/vo/s5.wav"></audio>
+  <audio id="v6" data-start="58.9" src="assets/vo/s6.wav"></audio>
+  <audio id="x1" data-start="5.8" data-volume="0.3" src="assets/sfx/card-slide-1.ogg"></audio>
+  <audio id="x2" data-start="38.1" data-volume="0.35" src="assets/sfx/bong_001.ogg"></audio>
+  <audio id="x3" data-start="58.6" data-volume="0.4" src="assets/sfx/impactBell_heavy_000.ogg"></audio>
+</div>
+<script src="assets/js/gsap.min.js"></script>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  const E = "power3.out";
+  function scene(id, a, b){ tl.fromTo(id,{opacity:0},{opacity:1,duration:.3},a); tl.to(id,{opacity:0,duration:.3},b-.3); }
+  // T0 (visible at frame 0)
+  tl.fromTo("#logo",{scale:.92},{scale:1,duration:1.2,ease:E},0);
+  tl.fromTo("#sub",{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:E},0.8);
+  tl.fromTo("#meta",{opacity:0},{opacity:1,duration:.5},2.4);
+  tl.to("#t0",{opacity:0,duration:.3},5.5);
+  // T1 pipeline: box coords from 2000px diagram, scaled 0.88, offset 80/20
+  scene("#t1",5.8,23.3);
+  const box=(x1,y1,x2,y2)=>({left:80+x1*.88,top:20+y1*.88,width:(x2-x1)*.88,height:(y2-y1)*.88});
+  const steps=[
+    ["#c1",6.1,  box(92,207,428,423), "#00d4ff"],
+    ["#c2",8.6,  box(92,542,428,758), "#8b8cf8"],
+    ["#c3",11.0, box(539,393,953,590), "#06b6d4"],
+    ["#c4",14.0, box(539,635,953,833), "#10b981"],
+    ["#c5",19.3, box(539,150,953,348), "#f43f5e"],
+  ];
+  gsap.set("#hl",steps[0][2]);
+  tl.to("#hl",{opacity:1,duration:.3},steps[0][1]);
+  steps.forEach((s,i)=>{
+    if(i>0){ tl.to("#hl",{...s[2],duration:.5,ease:"power2.inOut"},s[1]); tl.to(steps[i-1][0],{opacity:0,duration:.2},s[1]); }
+    tl.fromTo(s[0],{opacity:0},{opacity:1,duration:.3},s[1]+.1);
+  });
+  tl.fromTo("#arch",{scale:1},{scale:1.03,duration:17,ease:"none"},5.8);
+  // T2
+  scene("#t2",23.3,30.5);
+  tl.fromTo("#t2 .mode",{opacity:0,y:50},{opacity:1,y:0,duration:.5,ease:E,stagger:.7},24.6);
+  tl.fromTo("#t2 .modes",{scale:1},{scale:1.04,duration:4,ease:"sine.inOut"},26.4);
+  // T3
+  scene("#t3",30.5,37.0);
+  tl.fromTo("#t3 .bar",{opacity:0,x:-40},{opacity:1,x:0,duration:.4,ease:E,stagger:.35},30.9);
+  tl.fromTo("#tiers",{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:E},33.6);
+  // T4
+  scene("#t4",37.0,51.8);
+  tl.fromTo("#ta",{opacity:0,y:40},{opacity:1,y:0,duration:.5,ease:E},39.4);
+  tl.fromTo("#or",{opacity:0},{opacity:1,duration:.3},41.6);
+  tl.fromTo("#tb",{opacity:0,y:40},{opacity:1,y:0,duration:.5,ease:E},42.2);
+  tl.fromTo("#t4 .act",{opacity:0,y:30},{opacity:1,y:0,duration:.4,ease:E,stagger:1.4},45.8);
+  // T5
+  scene("#t5",51.8,58.6);
+  tl.fromTo("#dash",{y:60},{y:0,duration:.8,ease:E},51.8);
+  tl.fromTo("#t5 .it",{opacity:0,x:40},{opacity:1,x:0,duration:.4,ease:E,stagger:1.3},52.4);
+  // T6
+  tl.fromTo("#t6",{opacity:0},{opacity:1,duration:.4},58.6);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["root"] = tl;
+</script>
+</body>
+</html>

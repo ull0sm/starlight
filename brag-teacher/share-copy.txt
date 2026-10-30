@@ -1,0 +1,1 @@
+DriveGuard v5, a real-time driver safety system in Python: MediaPipe FaceMesh (EAR/MAR/solvePnP) + YOLOv8 phone detection → a weighted 0–100 fatigue score → critical-state alerts via OpenStreetMap, Gmail and Telegram, with a live Flask dashboard.
